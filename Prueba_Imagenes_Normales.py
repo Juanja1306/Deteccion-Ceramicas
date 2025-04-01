@@ -1,13 +1,14 @@
 import os
-import torch #type: ignore
-import torch.nn as nn #type: ignore
-import torch.optim as optim #type: ignore
-from torchvision import models, transforms  #type: ignore
-from torch.utils.data import DataLoader, Dataset    #type: ignore
+import time
+import torch  # type: ignore
+import torch.nn as nn  # type: ignore
+import torch.optim as optim  # type: ignore
+from torchvision import models, transforms  # type: ignore
+from torch.utils.data import DataLoader, Dataset  # type: ignore
 from PIL import Image
 from sklearn.model_selection import KFold
 import numpy as np
-from torchvision.models import ResNet50_Weights #type: ignore
+from torchvision.models import ResNet50_Weights  # type: ignore
 
 Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
@@ -70,7 +71,8 @@ best_accuracy = 0.0  # Para rastrear el mejor accuracy
 
 # Validación cruzada con KFold
 for fold, (train_idx, test_idx) in enumerate(kf.split(full_dataset)):
-    print(f"Fold {fold + 1}/{NUM_FOLDS}")
+    print(f"\nIniciando Fold {fold + 1}/{NUM_FOLDS}")
+    fold_start_time = time.time()  # Inicia el timer del fold
 
     # Subconjuntos de entrenamiento y prueba con DataLoader que usan NUM_WORKERS
     train_subsampler = torch.utils.data.SubsetRandomSampler(train_idx)
@@ -106,6 +108,8 @@ for fold, (train_idx, test_idx) in enumerate(kf.split(full_dataset)):
 
     # Entrenamiento del modelo
     for epoch in range(start_epoch, NUM_EPOCHS):
+        epoch_start_time = time.time()  # Inicia timer de la época
+
         model.train()
         running_loss = 0.0
         correct = 0
@@ -152,7 +156,9 @@ for fold, (train_idx, test_idx) in enumerate(kf.split(full_dataset)):
 
         epoch_loss = running_loss / len(train_loader)
         epoch_accuracy = 100.0 * correct / total
-        print(f"Epoch [{epoch+1}/{NUM_EPOCHS}], Loss: {epoch_loss:.4f}, Accuracy: {epoch_accuracy:.2f}%")
+        epoch_end_time = time.time()  # Fin del timer de la época
+        epoch_duration = epoch_end_time - epoch_start_time
+        print(f"Epoch [{epoch+1}/{NUM_EPOCHS}], Loss: {epoch_loss:.4f}, Accuracy: {epoch_accuracy:.2f}%, Tiempo: {epoch_duration:.2f} segundos")
         
         # Reiniciar start_batch para las epochs siguientes
         start_batch = 0
@@ -170,18 +176,22 @@ for fold, (train_idx, test_idx) in enumerate(kf.split(full_dataset)):
             test_correct += predicted.eq(labels).sum().item()
 
     test_accuracy = 100.0 * test_correct / test_total
-    print(f"Fold {fold + 1} Test Accuracy: {test_accuracy:.2f}%\n")
+    print(f"Fold {fold + 1} Test Accuracy: {test_accuracy:.2f}%")
     accuracies.append(test_accuracy)
 
     # Guardar el mejor modelo global si se mejora la accuracy
     if test_accuracy > best_accuracy:
         best_accuracy = test_accuracy
         torch.save(model.state_dict(), MODEL_SAVE_PATH)
-        print(f"Nuevo mejor modelo guardado con accuracy: {best_accuracy:.2f}%\n")
+        print(f"Nuevo mejor modelo guardado con accuracy: {best_accuracy:.2f}%")
 
     # (Opcional) Eliminar el checkpoint del fold si ya no es necesario
     if os.path.exists(checkpoint_path):
         os.remove(checkpoint_path)
 
+    fold_end_time = time.time()  # Fin del timer del fold
+    fold_duration = fold_end_time - fold_start_time
+    print(f"Tiempo total para Fold {fold + 1}: {fold_duration:.2f} segundos")
+
 final_accuracy = np.mean(accuracies)
-print(f"Final Average Test Accuracy: {final_accuracy:.2f}%")
+print(f"\nFinal Average Test Accuracy: {final_accuracy:.2f}%")
