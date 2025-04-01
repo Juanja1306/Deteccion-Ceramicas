@@ -1,9 +1,9 @@
 import os
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from torchvision import models, transforms
-from torch.utils.data import DataLoader, Dataset
+import torch #type: ignore
+import torch.nn as nn #type: ignore
+import torch.optim as optim #type: ignore
+from torchvision import models, transforms #type: ignore
+from torch.utils.data import DataLoader, Dataset #type: ignore
 from PIL import Image
 from sklearn.model_selection import KFold
 import numpy as np
