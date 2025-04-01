@@ -13,8 +13,8 @@ Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # Configuración inicial
 ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
-BATCH_SIZE = 8
-NUM_EPOCHS = 10
+BATCH_SIZE = 4
+NUM_EPOCHS = 30
 LEARNING_RATE = 0.001
 IMAGE_SIZE = (1024, 1024)  # Tamaño deseado para las imágenes
 NUM_CLASSES = len(os.listdir(ROOT_DIR))  # Número de clases (subcarpetas)
