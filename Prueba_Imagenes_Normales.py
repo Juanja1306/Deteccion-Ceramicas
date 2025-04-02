@@ -14,15 +14,17 @@ Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # Configuración inicial
 ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
-BATCH_SIZE = 4
-NUM_EPOCHS = 30
+BATCH_SIZE = 8
+NUM_EPOCHS = 15
 LEARNING_RATE = 0.001
 IMAGE_SIZE = (1024, 1024)  # Tamaño deseado para las imágenes
 NUM_CLASSES = len(os.listdir(ROOT_DIR))  # Número de clases (subcarpetas)
 NUM_FOLDS = 5  # Número de folds para validación cruzada
 MODEL_SAVE_PATH = "mejor_modelo.pth"  # Ruta para guardar el mejor modelo
 SAVE_INTERVAL = 100  # Guardar checkpoint cada 100 batches
-NUM_WORKERS = 16  # Número de workers para cargar datos en paralelo
+NUM_WORKERS = 12  # Número de workers para cargar datos en paralelo
+
+torch.set_num_threads(16)
 
 # Transformaciones para las imágenes
 transform = transforms.Compose([
@@ -79,7 +81,7 @@ for fold, (train_idx, test_idx) in enumerate(kf.split(full_dataset)):
     test_subsampler = torch.utils.data.SubsetRandomSampler(test_idx)
     train_loader = DataLoader(full_dataset, batch_size=BATCH_SIZE, sampler=train_subsampler, num_workers=NUM_WORKERS)
     test_loader = DataLoader(full_dataset, batch_size=BATCH_SIZE, sampler=test_subsampler, num_workers=NUM_WORKERS)
-
+    
     # Inicializar el modelo preentrenado (ResNet50 como ejemplo)
     model = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V1)
     model.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3, bias=False)
