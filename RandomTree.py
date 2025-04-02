@@ -1,9 +1,9 @@
 import os
 import time
 import numpy as np
-import torch
-from torchvision import transforms
-from torch.utils.data import Dataset
+import torch #type: ignore[import]
+from torchvision import transforms #type: ignore[import]
+from torch.utils.data import Dataset #type: ignore[import]
 from PIL import Image
 from sklearn.model_selection import KFold
 from sklearn.ensemble import RandomForestClassifier

@@ -1,8 +1,8 @@
 import os
 import time
-import torch
-from torchvision import models, transforms
-from torch.utils.data import DataLoader, Dataset
+import torch #type: ignore[import]
+from torchvision import models, transforms #type: ignore[import]
+from torch.utils.data import DataLoader, Dataset #type: ignore[import]
 from PIL import Image
 import numpy as np
 from sklearn.linear_model import SGDClassifier
