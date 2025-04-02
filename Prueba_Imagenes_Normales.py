@@ -14,10 +14,10 @@ Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # Configuración inicial
 ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
-BATCH_SIZE = 8
+BATCH_SIZE =32
 NUM_EPOCHS = 15
 LEARNING_RATE = 0.002
-IMAGE_SIZE = (1024, 1024)  # Tamaño deseado para las imágenes
+IMAGE_SIZE = (512, 512)  # Tamaño deseado para las imágenes
 NUM_CLASSES = len(os.listdir(ROOT_DIR))  # Número de clases (subcarpetas)
 NUM_FOLDS = 5  # Número de folds para validación cruzada
 MODEL_SAVE_PATH = "mejor_modelo.pth"  # Ruta para guardar el mejor modelo
