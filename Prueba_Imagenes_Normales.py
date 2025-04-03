@@ -13,7 +13,7 @@ from torchvision.models import ResNet50_Weights  # type: ignore
 Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # Configuración inicial
-ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
+ROOT_DIR = r"C:\Users\Juanja Malo\Desktop\Deteccion-Ceramicas\Ruido"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
 BATCH_SIZE =32
 NUM_EPOCHS = 15
 LEARNING_RATE = 0.002
@@ -24,7 +24,7 @@ MODEL_SAVE_PATH = "mejor_modelo.pth"  # Ruta para guardar el mejor modelo
 SAVE_INTERVAL = 100  # Guardar checkpoint cada 100 batches
 NUM_WORKERS = 12  # Número de workers para cargar datos en paralelo
 
-torch.set_num_threads(16)
+#torch.set_num_threads(16)
 
 # Transformaciones para las imágenes
 transform = transforms.Compose([
@@ -79,8 +79,8 @@ for fold, (train_idx, test_idx) in enumerate(kf.split(full_dataset)):
     # Subconjuntos de entrenamiento y prueba con DataLoader que usan NUM_WORKERS
     train_subsampler = torch.utils.data.SubsetRandomSampler(train_idx)
     test_subsampler = torch.utils.data.SubsetRandomSampler(test_idx)
-    train_loader = DataLoader(full_dataset, batch_size=BATCH_SIZE, sampler=train_subsampler, num_workers=NUM_WORKERS)
-    test_loader = DataLoader(full_dataset, batch_size=BATCH_SIZE, sampler=test_subsampler, num_workers=NUM_WORKERS)
+    train_loader = DataLoader(full_dataset, batch_size=BATCH_SIZE, sampler=train_subsampler, num_workers=NUM_WORKERS, pin_memory=True)
+    test_loader = DataLoader(full_dataset, batch_size=BATCH_SIZE, sampler=test_subsampler, num_workers=NUM_WORKERS, pin_memory=True)
     
     # Inicializar el modelo preentrenado (ResNet50 como ejemplo)
     model = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V1)
@@ -88,6 +88,7 @@ for fold, (train_idx, test_idx) in enumerate(kf.split(full_dataset)):
     num_ftrs = model.fc.in_features
     model.fc = nn.Linear(num_ftrs, NUM_CLASSES)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Usando dispositivo: {device}")
     model = model.to(device)
 
     # Definir función de pérdida y optimizador

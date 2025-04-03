@@ -15,7 +15,7 @@ Image.MAX_IMAGE_PIXELS = None
 
 # Configuración inicial
 ROOT_DIR = r"D:\DATA FINAL\Ruido"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
-BATCH_SIZE = 8
+BATCH_SIZE = 16
 NUM_EPOCHS = 15
 LEARNING_RATE = 0.001
 IMAGE_SIZE = (1024, 1024)  # Tamaño deseado para las imágenes
