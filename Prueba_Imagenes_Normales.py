@@ -10,11 +10,14 @@ from sklearn.model_selection import KFold
 import numpy as np
 from torchvision.models import ResNet50_Weights  # type: ignore
 
+# Suprime la advertencia de DecompressionBombWarning
+warnings.filterwarnings("ignore", category=Image.DecompressionBombWarning)
+
 Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # Configuración inicial
 ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
-BATCH_SIZE =32
+BATCH_SIZE = 32
 NUM_EPOCHS = 15
 LEARNING_RATE = 0.002
 IMAGE_SIZE = (512, 512)  # Tamaño deseado para las imágenes
@@ -67,12 +70,28 @@ full_dataset = CustomImageDataset(root_dir=ROOT_DIR, transform=transform)
 # Dividir el dataset usando KFold
 kf = KFold(n_splits=NUM_FOLDS, shuffle=True, random_state=42)
 
-# Lista para almacenar accuracies de cada fold
+# Lista para almacenar accuracies de cada fold y variable global para el mejor accuracy
 accuracies = []
 best_accuracy = 0.0  # Para rastrear el mejor accuracy
 
+# *********************** BUSCAR CHECKPOINT DEL ÚLTIMO FOLD *************************
+start_fold = 0  # Por defecto se empieza desde el primer fold (índice 0)
+# Iterar desde el último fold al primero (nótese que los checkpoints se nombran como fold1, fold2, etc.)
+for fold_num in range(NUM_FOLDS, 0, -1):
+    checkpoint_path = f"checkpoint_fold{fold_num}_latest.pth"
+    if os.path.exists(checkpoint_path):
+        start_fold = fold_num - 1  # Ajustamos a índice de Python (0-index)
+        print(f"Se encontró un checkpoint en el fold {fold_num}. Reanudando desde este fold.")
+        break
+# **********************************************************************************
+
 # Validación cruzada con KFold
 for fold, (train_idx, test_idx) in enumerate(kf.split(full_dataset)):
+    # Si el fold actual es menor que el fold a partir del cual se encontró checkpoint, se salta
+    if fold < start_fold:
+        print(f"Saltando fold {fold + 1} ya completado o sin checkpoint pendiente...")
+        continue
+
     print(f"\nIniciando Fold {fold + 1}/{NUM_FOLDS}")
     fold_start_time = time.time()  # Inicia el timer del fold
 
