@@ -17,7 +17,7 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 
 ---
 
-## Descripción
+## <span style="color:red;">Descripción</span>
 
 Este proyecto tiene como objetivo detectar y clasificar imágenes de cerámicas mediante varias técnicas de análisis visual. Para ello se han desarrollado múltiples módulos:
 
@@ -33,7 +33,7 @@ Además, se proporcionan scripts para realizar predicciones sobre nuevas imágen
 
 ---
 
-## Organización del Proyecto
+## <span style="color:red;">Organización del Proyecto</span>
 
 El repositorio incluye los siguientes archivos principales:
 
@@ -59,7 +59,7 @@ El repositorio incluye los siguientes archivos principales:
 
 ---
 
-## Requisitos
+## <span style="color:red;">Requisitos</span>
 Python 3.12
 
 ---
