@@ -21,13 +21,13 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 
 Este proyecto tiene como objetivo detectar y clasificar imágenes de cerámicas mediante varias técnicas de análisis visual. Para ello se han desarrollado múltiples módulos:
 
-CNN: Utiliza una red neuronal basada en ResNet50 preentrenada para extraer características y clasificar las imágenes usando validación cruzada (KFold) y checkpointing para reanudar entrenamientos.
+* CNN: Utiliza una red neuronal basada en ResNet50 preentrenada para extraer características y clasificar las imágenes usando validación cruzada (KFold) y checkpointing para reanudar entrenamientos.
 
-LBP (Local Binary Pattern): Extrae características locales de las imágenes mediante LBP para entrenar clasificadores con SVM o Random Forest. Se dispone de versiones tanto en CPU como aceleradas en GPU.
+* LBP (Local Binary Pattern): Extrae características locales de las imágenes mediante LBP para entrenar clasificadores con SVM o Random Forest. Se dispone de versiones tanto en CPU como aceleradas en GPU.
 
-PCA: Implementa una reducción de dimensionalidad con Análisis de Componentes Principales (PCA) seguida de regresión logística para la clasificación.
+* PCA: Implementa una reducción de dimensionalidad con Análisis de Componentes Principales (PCA) seguida de regresión logística para la clasificación.
 
-Clasificadores Incrementales: Incluye scripts para entrenar modelos basados en Random Forest (con entrenamiento incremental vía warm_start) y SVM incremental (con SGDClassifier).
+* Clasificadores Incrementales: Incluye scripts para entrenar modelos basados en Random Forest (con entrenamiento incremental vía warm_start) y SVM incremental (con SGDClassifier).
 
 Además, se proporcionan scripts para realizar predicciones sobre nuevas imágenes y evaluar el desempeño de los modelos mediante la generación de informes y tablas resumidas.
 
