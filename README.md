@@ -96,7 +96,7 @@ pip install -r requirements.txt
 
 ## Estructura de Datos
 El proyecto asume que las imágenes se organizan en carpetas donde cada subcarpeta representa una clase (label) de cerámicas. Por ejemplo:
-
+```
 DATA/
 └── Ruido/
     ├── Clase1/
@@ -108,7 +108,7 @@ DATA/
     │   ├── imagen2.jpg
     │   └── ...
     └── ...
-
+```
 Asegúrate de configurar la variable ROOT_DIR en cada script para apuntar a la ubicación correcta de tus datos.
 
 ---
