@@ -1,4 +1,5 @@
 # Detección Cerámicas
+<h1 style="color: red;">Título en rojo</h1>
 
 Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de diferentes tipos de cerámicas mediante técnicas de procesamiento de imágenes y aprendizaje automático. Se han implementado diversas metodologías que incluyen redes neuronales convolucionales, extracción de características basadas en LBP, reducción de dimensionalidad con PCA y clasificadores tradicionales (como SVM y Random Forest).
 
@@ -17,7 +18,7 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 
 ---
 
-## <span style="color:red;">Descripción</span>
+## Descripción
 
 Este proyecto tiene como objetivo detectar y clasificar imágenes de cerámicas mediante varias técnicas de análisis visual. Para ello se han desarrollado múltiples módulos:
 
@@ -33,7 +34,7 @@ Además, se proporcionan scripts para realizar predicciones sobre nuevas imágen
 
 ---
 
-## <span style="color:red;">Organización del Proyecto</span>
+## Organización del Proyecto
 
 El repositorio incluye los siguientes archivos principales:
 
@@ -59,7 +60,7 @@ El repositorio incluye los siguientes archivos principales:
 
 ---
 
-## <span style="color:red;">Requisitos</span>
+## Requisitos
 Python 3.12
 
 ---
