@@ -96,10 +96,10 @@ for fold, (train_idx, test_idx) in enumerate(kf.split(X)):
         print(f"Reanudando fold {fold + 1} desde el checkpoint guardado.")
     else:
         # # Entrenar el clasificador SVM
-        # clf = SVC(kernel='linear', probability=True, random_state=RANDOM_STATE)
+        clf = SVC(kernel='linear', probability=True, random_state=RANDOM_STATE)
         
         # Usar RandomForestClassifier en su lugar
-        clf = RandomForestClassifier(n_estimators=100, random_state=RANDOM_STATE)
+        # clf = RandomForestClassifier(n_estimators=100, random_state=RANDOM_STATE)
         
         clf.fit(X_train, y_train)
         # Guardar el checkpoint para este fold
