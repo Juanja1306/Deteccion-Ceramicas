@@ -1,5 +1,4 @@
 # Detección Cerámicas
-<h1 style="color: red;">Título en rojo</h1>
 
 Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de diferentes tipos de cerámicas mediante técnicas de procesamiento de imágenes y aprendizaje automático. Se han implementado diversas metodologías que incluyen redes neuronales convolucionales, extracción de características basadas en LBP, reducción de dimensionalidad con PCA y clasificadores tradicionales (como SVM y Random Forest).
 
