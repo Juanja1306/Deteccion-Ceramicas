@@ -149,7 +149,7 @@ Para entrenar un clasificador Random Forest con entrenamiento incremental:
 python RandomTree.py
 ```
 
-*SMV.py:
+* SMV.py:
 Para entrenar un clasificador SVM incremental:
 
 ```bash
