@@ -5,7 +5,7 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 ## Resultados
 
 | Algoritmo/Modelo | Acuracy | Ciudad |
-| :----------- | ---: | :-------: |
+| :---: | :---: | :---: |
 | Juan Pérez   |  30  | Madrid    |
 | María López  |  25  | Barcelona |
 | Carlos Ruiz  |  28  | Valencia  |
