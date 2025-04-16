@@ -38,7 +38,21 @@ def compute_lbp(image_path):
     return hist
 
 # Función para cargar el dataset completo
-def load_dataset(root_dir):
+def load_dataset(root_dir, json_file="dataset.json"):
+    """
+    Recorre las subcarpetas (etiquetas) y extrae el histograma LBP de cada imagen.
+    Primero verifica si existe un archivo JSON con los datos preprocesados. 
+    Si existe, carga y retorna dichos datos; en caso contrario, procesa las imágenes y guarda los resultados.
+    """
+    if os.path.exists(json_file):
+        print("Cargando datos desde el archivo JSON...")
+        with open(json_file, "r") as f:
+            data = json.load(f)
+        features = np.array(data["features"])
+        labels = np.array(data["labels"])
+        return features, labels
+
+    # Si no existe el JSON, se procede a procesar los datos
     classes = sorted(os.listdir(root_dir))
     class_to_idx = {cls: idx for idx, cls in enumerate(classes)}
     features = []
@@ -46,11 +60,26 @@ def load_dataset(root_dir):
     for cls in classes:
         cls_dir = os.path.join(root_dir, cls)
         if os.path.isdir(cls_dir):
+            print(f"Procesando clase: {cls}")
             for img_name in os.listdir(cls_dir):
                 img_path = os.path.join(cls_dir, img_name)
                 features.append(compute_lbp(img_path))
                 labels.append(class_to_idx[cls])
-    return np.array(features), np.array(labels)
+    
+    features = np.array(features)
+    labels = np.array(labels)
+    
+    # Guardar los datos preprocesados en un archivo JSON
+    data = {
+        "features": features.tolist(),  # Convertir np.array a lista para poder serializar en JSON
+        "labels": labels.tolist()
+    }
+    with open(json_file, "w") as f:
+        json.dump(data, f)
+    print("Datos preprocesados guardados en:", json_file)
+    
+    return features, labels
+
 
 # Definición del clasificador basado en k-means
 class KMeansClassifier:
