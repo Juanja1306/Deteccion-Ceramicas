@@ -13,9 +13,9 @@ Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # ========================= Configuraciones Iniciales =========================
 # Directorio con las imágenes organizadas en subcarpetas (cada una es una etiqueta)
-ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"
+ROOT_DIR = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"
 # Ruta del modelo entrenado (PyTorch)
-MODEL_PATH = "mejor_modelo_lbp.pt"
+MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_NN_PyTorch.pt"
 # Tamaño de la imagen (debe coincidir con el usado en entrenamiento)
 IMAGE_SIZE = (512, 512)
 # Porcentaje de imágenes a evaluar por subcarpeta
