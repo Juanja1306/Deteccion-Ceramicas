@@ -8,6 +8,11 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import TensorDataset, DataLoader
+import warnings
+
+warnings.filterwarnings("ignore", category=Image.DecompressionBombWarning)
+
+Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # ============================ CONFIGURACIÓN ============================
 # Rutas y parámetros generales
