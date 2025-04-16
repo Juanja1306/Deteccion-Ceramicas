@@ -4,11 +4,15 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 
 ## Resultados
 
-| Algoritmo/Modelo | Acuracy | Ciudad |
+| Algoritmo/Modelo | Acuracy | Confianza |
 | :---: | :---: | :---: |
-| Juan Pérez   |  30  | Madrid    |
-| María López  |  25  | Barcelona |
-| Carlos Ruiz  |  28  | Valencia  |
+| CNN |  59.32%  | 91.5%  |
+| LBP + Random Forest Classifier (RFC) |  95.95%  | 83.83% |
+| LBP + Suport Vector Machine (SVM)    |  2.3%  | 10.86%  |
+| LBP + KNN    | -%  | -%  |
+| LBP + KMeans    |  -%  | -%  |
+| LBP + NN con Pytorch    |  -%  | -%  |
+| LBP + NN con Tensorflow    |  -%  | -%  |
 
 
 
