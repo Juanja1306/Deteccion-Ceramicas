@@ -16,6 +16,7 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 | LBP + NN con Tensorflow    |  -%  | -%  |
 
 </div>
+
 ---
 
 ## Tabla de Contenidos
