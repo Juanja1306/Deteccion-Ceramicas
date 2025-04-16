@@ -14,7 +14,7 @@ warnings.filterwarnings("ignore", category=Image.DecompressionBombWarning)
 Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # Configuración inicial
-ROOT_DIR = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
+ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
 NUM_CLASSES = len(os.listdir(ROOT_DIR))  # Número de clases (subcarpetas)
 NUM_FOLDS = 5  # Número de folds para validación cruzada
 IMAGE_SIZE = (512, 512)  # Tamaño deseado para las imágenes
