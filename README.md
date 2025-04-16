@@ -7,8 +7,8 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
     
 | Algoritmo/Modelo | Acuracy | Confianza |
 | :---: | :---: | :---: |
-| CNN |  59.32%  | 91.5%  |
 | LBP + Random Forest Classifier (RFC) |  95.95%  | 83.83% |
+| CNN |  59.32%  | 91.5%  |
 | LBP + Suport Vector Machine (SVM)    |  2.3%  | 10.86%  |
 | LBP + KNN    | -%  | -%  |
 | LBP + KMeans    |  -%  | -%  |
