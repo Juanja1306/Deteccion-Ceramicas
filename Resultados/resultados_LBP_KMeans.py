@@ -12,8 +12,8 @@ warnings.filterwarnings("ignore", category=Image.DecompressionBombWarning)
 Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # Rutas y parámetros (ajusta según tu estructura)
-ROOT_DIR = r"C:\ruta\a\tus\imagenes"  # Carpeta raíz donde cada subcarpeta representa una etiqueta
-MODEL_PATH = r"C:\ruta\al\modelo\mejor_modelo_lbp_KMeans.pkl"  # Ruta del modelo entrenado basado en KMeans
+ROOT_DIR = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"  # Carpeta raíz donde cada subcarpeta representa una etiqueta
+MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_KMeans.pkl"  # Ruta del modelo entrenado basado en KMeans
 IMAGE_SIZE = (512, 512)          # Debe coincidir con el tamaño usado en entrenamiento
 SAMPLE_PERCENT = 0.2             # Porcentaje de imágenes a evaluar por subcarpeta
 
