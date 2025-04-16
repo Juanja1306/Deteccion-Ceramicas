@@ -13,9 +13,9 @@ Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # ========================= CONFIGURACIONES =========================
 # Ruta a la carpeta raíz con subcarpetas (cada una es una etiqueta)
-ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"
+ROOT_DIR = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"
 # Ruta del modelo entrenado (Keras) guardado
-MODEL_PATH = "mejor_modelo_lbp_NN.h5"
+MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_NN_Tensorflow.h5"
 # Tamaño de la imagen (debe coincidir con el usado en entrenamiento)
 IMAGE_SIZE = (512, 512)
 # Porcentaje de imágenes a evaluar por subcarpeta
