@@ -3,7 +3,8 @@
 Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de diferentes tipos de cerámicas mediante técnicas de procesamiento de imágenes y aprendizaje automático. Se han implementado diversas metodologías que incluyen redes neuronales convolucionales, extracción de características basadas en LBP, reducción de dimensionalidad con PCA y clasificadores tradicionales (como SVM y Random Forest).
 
 ## Resultados
-<div style="text-align: center;">
+<center>
+    
 | Algoritmo/Modelo | Acuracy | Confianza |
 | :---: | :---: | :---: |
 | CNN |  59.32%  | 91.5%  |
@@ -14,7 +15,7 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 | LBP + NN con Pytorch    |  -%  | -%  |
 | LBP + NN con Tensorflow    |  -%  | -%  |
 
-</div>
+</center>
 
 ## Tabla de Contenidos
 
