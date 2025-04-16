@@ -1,5 +1,6 @@
 import os
 import time
+import json
 import numpy as np
 from sklearn.model_selection import KFold
 from skimage.feature import local_binary_pattern  # type: ignore
@@ -11,11 +12,9 @@ from torch.utils.data import TensorDataset, DataLoader
 import warnings
 
 warnings.filterwarnings("ignore", category=Image.DecompressionBombWarning)
-
 Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # ============================ CONFIGURACIÓN ============================
-# Rutas y parámetros generales
 ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"  # Ruta a las imágenes, organizadas en subcarpetas por clase.
 NUM_CLASSES = len(os.listdir(ROOT_DIR))  # Número de clases (subcarpetas)
 NUM_FOLDS = 5                           # Número de folds para validación cruzada
@@ -40,6 +39,7 @@ torch.manual_seed(RANDOM_STATE)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Dispositivo a usar:", device)
 
+
 # ============================ FUNCIONES DE PREPROCESAMIENTO ============================
 def compute_lbp(image_path):
     """
@@ -55,10 +55,22 @@ def compute_lbp(image_path):
     hist /= (hist.sum() + 1e-6)
     return hist
 
-def load_dataset(root_dir):
+
+def load_dataset(root_dir, json_file="dataset.json"):
     """
     Recorre las subcarpetas (etiquetas) y extrae el histograma LBP de cada imagen.
+    Primero verifica si existe un archivo JSON con los datos preprocesados. 
+    Si existe, carga y retorna dichos datos; en caso contrario, procesa las imágenes y guarda los resultados.
     """
+    if os.path.exists(json_file):
+        print("Cargando datos desde el archivo JSON...")
+        with open(json_file, "r") as f:
+            data = json.load(f)
+        features = np.array(data["features"])
+        labels = np.array(data["labels"])
+        return features, labels
+
+    # Si no existe el JSON, se procede a procesar los datos
     classes = sorted(os.listdir(root_dir))
     class_to_idx = {cls: idx for idx, cls in enumerate(classes)}
     features = []
@@ -66,11 +78,26 @@ def load_dataset(root_dir):
     for cls in classes:
         cls_dir = os.path.join(root_dir, cls)
         if os.path.isdir(cls_dir):
+            print(f"Procesando clase: {cls} ({class_to_idx[cls]})")
             for img_name in os.listdir(cls_dir):
                 img_path = os.path.join(cls_dir, img_name)
                 features.append(compute_lbp(img_path))
                 labels.append(class_to_idx[cls])
-    return np.array(features), np.array(labels)
+    
+    features = np.array(features)
+    labels = np.array(labels)
+    
+    # Guardar los datos preprocesados en un archivo JSON
+    data = {
+        "features": features.tolist(),  # Convertir np.array a lista para poder serializar en JSON
+        "labels": labels.tolist()
+    }
+    with open(json_file, "w") as f:
+        json.dump(data, f)
+    print("Datos preprocesados guardados en:", json_file)
+    
+    return features, labels
+
 
 # ============================ DEFINICIÓN DEL MODELO CON PYTORCH ============================
 class NeuralNet(nn.Module):
@@ -90,6 +117,7 @@ class NeuralNet(nn.Module):
         x = self.relu2(x)
         x = self.fc3(x)
         return x
+
 
 # ============================ CARGA DE DATOS ============================
 print("Cargando dataset...")
