@@ -9,7 +9,7 @@ import pandas as pd
 
 # Configuraciones
 ROOT_DIR = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"  # Directorio raíz con subcarpetas (labels)
-MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\checkpoint_fold1_latest.pth"  # Ruta del modelo/checkpoint guardado
+MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\checkpoint_fold1_latest.pth"  # Ruta del modelo/checkpoint guardado
 IMAGE_SIZE = (512, 512)  # Mismo tamaño que en entrenamiento
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 SAMPLE_PERCENT = 0.2  # Porcentaje de imágenes a evaluar por subcarpeta
