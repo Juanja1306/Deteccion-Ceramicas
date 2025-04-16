@@ -78,7 +78,7 @@ def load_dataset(root_dir, json_file="dataset.json"):
     for cls in classes:
         cls_dir = os.path.join(root_dir, cls)
         if os.path.isdir(cls_dir):
-            print(f"Procesando clase: {cls} ({class_to_idx[cls]})")
+            print(f"Procesando clase: {cls}")
             for img_name in os.listdir(cls_dir):
                 img_path = os.path.join(cls_dir, img_name)
                 features.append(compute_lbp(img_path))
