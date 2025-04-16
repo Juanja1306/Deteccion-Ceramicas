@@ -13,7 +13,7 @@ IMAGE_SIZE = (512, 512)  # Tamaño deseado para las imágenes
 
 # Ruta a la carpeta raíz con subcarpetas (cada una es una etiqueta)
 # Ruta del modelo guardado
-MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp.pkl"
+MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_SVM.pkl"
 
 # =============================== Función para extraer LBP ===============================
 def compute_lbp(image_path):

@@ -5,12 +5,17 @@ import joblib
 import pandas as pd
 from PIL import Image
 from skimage.feature import local_binary_pattern  # type: ignore
+import warnings
+
+warnings.filterwarnings("ignore", category=Image.DecompressionBombWarning)
+
+Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # =============================== Configuraciones ===============================
 # Ruta a la carpeta raíz con subcarpetas (cada una es una etiqueta)
 ROOT_DIR = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"
 # Ruta del modelo (RandomForest entrenado con LBP) guardado
-MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp.pkl"
+MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_SVM.pkl"
 # Tamaño deseado para las imágenes (debe coincidir con el usado en entrenamiento)
 IMAGE_SIZE = (512, 512)
 # Porcentaje de imágenes a evaluar por subcarpeta
@@ -132,7 +137,7 @@ print(f"  Subcarpeta: {worst_label}")
 print(worst_metrics.to_string())
 
 # =============================== Exportar Resultados ===============================
-csv_output_path = "resultados_prediccion_lbp_rf.csv"
+csv_output_path = "resultados_prediccion_lbp_SVM.csv"
 df.to_csv(csv_output_path)
 print(f"\nTabla de resultados guardada en: {csv_output_path}")
 print("Fin del script.")
