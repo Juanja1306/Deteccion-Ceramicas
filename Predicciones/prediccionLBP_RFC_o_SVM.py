@@ -13,6 +13,7 @@ IMAGE_SIZE = (512, 512)  # Tamaño deseado para las imágenes
 
 # Ruta a la carpeta raíz con subcarpetas (cada una es una etiqueta)
 # Ruta del modelo guardado
+ROOT_DIR = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"
 MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_SVM.pkl"
 
 # =============================== Función para extraer LBP ===============================
@@ -46,26 +47,30 @@ else:
 
 # =============================== Obtener las Clases ===============================
 # Se asume que cada subcarpeta en ROOT_DIR corresponde a una etiqueta
-classes = ['ALABAMA', 'ALMA', 'ALTAR', 'ALTEZZA', 'AMALFI', 'AMALTA', 'AMAZONIA', 'AMELIE', 
-           'ANDROMEDA', 'ANTARES', 'AQUARIUM', 'ARGEL', 'ARIZONA', 'ARRECIFE', 'ARTICO', 
-           'ASTI', 'ATHENAS', 'BALI', 'BASALTINA', 'BASALTO', 'BASIC', 'BELEK', 'BLACKSTONE', 
-           'BLOSSOM', 'BOLONIA', 'BOREAL', 'BOSTON', 'BRESCIA', 'BROOKLYN', 'CALIFORNIA', 'CALIZA', 
-           'CARRARA', 'CATANIA', 'CEMENTO', 'CEMENTO DECORADO', 'CEOL', 'CEPPO', 'CHARLOTE', 'CHLOE', 
-           'CIPRES', 'CLOUDY_FOREST', 'CONCEPT', 'CONCRET', 'CONCRETO', 'CONTEMPO', 'CORAL', 'COTTO', 
-           'CRETA', 'DAKAR', 'DAKARI', 'DAKOTA', 'DANAE', 'DESERT', 'DOLOMITE', 'DORNE', 'ECOSTONE', 
-           'EMPERADOR', 'ESPACATOS', 'FACTORY', 'FENIX', 'FERRAN', 'FLOREANA', 'FLORENCIA', 'FLORENTINO', 
-           'FLORIAN', 'FORESTA', 'FRANCINE', 'FUSION', 'GALENO', 'GALIA', 'GRANITY', 'GRECO', 
-           'GRETA', 'GUAYACAN', 'HELI', 'HERMES', 'HYDRA', 'IBIZA', 'IPANEMA', 'ISABELA', 'IVORY', 'KAMANI', 
-           'KANSAS', 'KAPUR', 'KYOTO_DREAM', 'LAJA', 'LEBLON', 'LIMESTONE', 'LINEN', 'LINO', 'LITIO', 'MADISON', 
-           'MAJESTIC_BLUE', 'MALIBU', 'MANHATAN', 'MAUI', 'METAL', 'METALICOS', 'MIAMI', 'MONET', 'MONTANA', 'MORMONT', 
-           'MURANO', 'NANTES', 'NARVI', 'NATURA', 'NATURAL', 'NATURE', 'NAVONA', 'NEBRASKA', 'NEO', 'OAKLAND', 
-           'OKLAHOMA', 'OLIMPIA', 'OLIMPO', 'ONICE', 'OREGON', 'ORWELL', 'PADUA', 'PALIO', 'PALMIRA', 
-           'PAMPLONA', 'PANDORA', 'PARQUET', 'PEBBLE', 'PERIGATAN', 'PLASTER', 'PLATINUM', 'POMPEYA', 
-           'PRADO', 'QUARESTONE', 'QUEBEC', 'REFLECTION', 'RIVENDEL', 'ROCKY', 'ROMA', 'ROMA DECO', 
-           'SANDSTONE', 'SANT', 'SANTA CLARA', 'SECOYA', 'SIENA', 'SIERRA', 'SILVERADO', 'SLATEWORK', 
-           'SOFT_SABANA', 'SOTILE', 'STATUARIO', 'STELAR', 'STONE PRO', 'TDF', 'TERSO', 'TIRRENO', 
-           'TORINO', 'TOULOUSE', 'TRAVERTINE', 'TRITON', 'TROPICAL_LINEN', 'TUNDRA', 'TURIN', 'URBA', 
-           'URBAN_JUNGLE', 'UTAH', 'UYUNI', 'VENECIA', 'VENETTO', 'VESTRUM', 'WOODLAND', 'ZINERVA']
+# classes = ['ALABAMA', 'ALMA', 'ALTAR', 'ALTEZZA', 'AMALFI', 'AMALTA', 'AMAZONIA', 'AMELIE', 
+#            'ANDROMEDA', 'ANTARES', 'AQUARIUM', 'ARGEL', 'ARIZONA', 'ARRECIFE', 'ARTICO', 
+#            'ASTI', 'ATHENAS', 'BALI', 'BASALTINA', 'BASALTO', 'BASIC', 'BELEK', 'BLACKSTONE', 
+#            'BLOSSOM', 'BOLONIA', 'BOREAL', 'BOSTON', 'BRESCIA', 'BROOKLYN', 'CALIFORNIA', 'CALIZA', 
+#            'CARRARA', 'CATANIA', 'CEMENTO', 'CEMENTO DECORADO', 'CEOL', 'CEPPO', 'CHARLOTE', 'CHLOE', 
+#            'CIPRES', 'CLOUDY_FOREST', 'CONCEPT', 'CONCRET', 'CONCRETO', 'CONTEMPO', 'CORAL', 'COTTO', 
+#            'CRETA', 'DAKAR', 'DAKARI', 'DAKOTA', 'DANAE', 'DESERT', 'DOLOMITE', 'DORNE', 'ECOSTONE', 
+#            'EMPERADOR', 'ESPACATOS', 'FACTORY', 'FENIX', 'FERRAN', 'FLOREANA', 'FLORENCIA', 'FLORENTINO', 
+#            'FLORIAN', 'FORESTA', 'FRANCINE', 'FUSION', 'GALENO', 'GALIA', 'GRANITY', 'GRECO', 
+#            'GRETA', 'GUAYACAN', 'HELI', 'HERMES', 'HYDRA', 'IBIZA', 'IPANEMA', 'ISABELA', 'IVORY', 'KAMANI', 
+#            'KANSAS', 'KAPUR', 'KYOTO_DREAM', 'LAJA', 'LEBLON', 'LIMESTONE', 'LINEN', 'LINO', 'LITIO', 'MADISON', 
+#            'MAJESTIC_BLUE', 'MALIBU', 'MANHATAN', 'MAUI', 'METAL', 'METALICOS', 'MIAMI', 'MONET', 'MONTANA', 'MORMONT', 
+#            'MURANO', 'NANTES', 'NARVI', 'NATURA', 'NATURAL', 'NATURE', 'NAVONA', 'NEBRASKA', 'NEO', 'OAKLAND', 
+#            'OKLAHOMA', 'OLIMPIA', 'OLIMPO', 'ONICE', 'OREGON', 'ORWELL', 'PADUA', 'PALIO', 'PALMIRA', 
+#            'PAMPLONA', 'PANDORA', 'PARQUET', 'PEBBLE', 'PERIGATAN', 'PLASTER', 'PLATINUM', 'POMPEYA', 
+#            'PRADO', 'QUARESTONE', 'QUEBEC', 'REFLECTION', 'RIVENDEL', 'ROCKY', 'ROMA', 'ROMA DECO', 
+#            'SANDSTONE', 'SANT', 'SANTA CLARA', 'SECOYA', 'SIENA', 'SIERRA', 'SILVERADO', 'SLATEWORK', 
+#            'SOFT_SABANA', 'SOTILE', 'STATUARIO', 'STELAR', 'STONE PRO', 'TDF', 'TERSO', 'TIRRENO', 
+#            'TORINO', 'TOULOUSE', 'TRAVERTINE', 'TRITON', 'TROPICAL_LINEN', 'TUNDRA', 'TURIN', 'URBA', 
+#            'URBAN_JUNGLE', 'UTAH', 'UYUNI', 'VENECIA', 'VENETTO', 'VESTRUM', 'WOODLAND', 'ZINERVA']
+
+classes = sorted(os.listdir(ROOT_DIR))
+NUM_CLASSES = len(classes)
+# print(f"Clases encontradas: {classes}")
 
 # =============================== Función de Predicción para una Imagen ===============================
 def predict_image_top5(image_path):
