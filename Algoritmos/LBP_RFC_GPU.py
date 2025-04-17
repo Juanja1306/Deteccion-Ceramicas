@@ -9,6 +9,7 @@ from skimage.feature import local_binary_pattern  # type: ignore
 from PIL import Image
 import joblib
 import warnings
+import json
 
 warnings.filterwarnings("ignore", category=Image.DecompressionBombWarning)
 Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
