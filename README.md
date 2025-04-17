@@ -56,6 +56,7 @@ Además, se proporcionan scripts para realizar predicciones sobre nuevas imágen
 ---
 
 ## Checkpoints
+
 - Buscan archivos `checkpoint_fold{n}_latest.*` desde el último fold al primero.
 - Guardan el estado del modelo (y optimizador en NN) periódicamente o al finalizar cada fold.
 - Permiten interrumpir y reanudar el entrenamiento sin perder progreso.
@@ -63,11 +64,13 @@ Además, se proporcionan scripts para realizar predicciones sobre nuevas imágen
 ---
 
 ## Requisitos
+
 `Python 3.12`
 
 ---
 
 ## Dependencias
+
 * `PyTorch`
 
 * `TorchVision`
@@ -92,6 +95,7 @@ Además, se proporcionan scripts para realizar predicciones sobre nuevas imágen
 ---
 
 ## Instalación
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
@@ -101,6 +105,7 @@ pip install -r requirements.txt
 ---
 
 ## Estructura de Datos
+
 El proyecto asume que las imágenes se organizan en carpetas donde cada subcarpeta representa una clase (label) de cerámicas. Por ejemplo:
 ```
 DATA/
@@ -130,6 +135,7 @@ Los resultados en un `.csv` que nos da una tabla que compara cada label y su acu
 ---
 
 ## Consideraciones
+
 * Parámetros de Transformación:
 Asegúrate de que parámetros como el tamaño de imagen (IMAGE_SIZE) y las transformaciones (normalización, conversión a escala de grises o RGB) sean consistentes entre entrenamiento y predicción.
 Ajustar parámetros (`NUM_FOLDS`, `BATCH_SIZE`, `IMAGE_SIZE`, `tasa de aprendizaje`) según hardware.
