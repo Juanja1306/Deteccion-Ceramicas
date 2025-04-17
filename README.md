@@ -21,90 +21,80 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 
 ## Tabla de Contenidos
 
-- [Descripción](#descripción)
-- [Organización del Proyecto](#organización-del-proyecto)
+- [Algoritmos y Modelos](#algoritmos-y-modelos)
+- [Checkpoints](#checkpoints)
 - [Requisitos](#requisitos)
 - [Dependencias](#dependencias)
 - [Instalación](#instalación)
 - [Estructura de Datos](#estructura-de-datos)
-- [Instrucciones de Uso](#instrucciones-de-uso)
 - [Predicción](#predicción)
+- [Evaluación de Resultados](#evaluación-de-resultados)
 - [Consideraciones](#consideraciones)
 
 ---
 
-## Descripción
+## Algoritmos y Modelos
 
 Este proyecto tiene como objetivo detectar y clasificar imágenes de cerámicas mediante varias técnicas de análisis visual. Para ello se han desarrollado múltiples módulos:
 
-* CNN: Utiliza una red neuronal basada en ResNet50 preentrenada para extraer características y clasificar las imágenes usando validación cruzada (KFold) y checkpointing para reanudar entrenamientos.
+* Convolutional Neural Network (CNN): En `CNN.py` se emplea una CNN basada en ResNet50 preentrenada. Las capas convolucionales extraen características de alto nivel de las imágenes, y la última capa totalmente conectada se ajusta al número de clases. Esta arquitectura aprovecha transferencia de aprendizaje.
 
-* LBP (Local Binary Pattern): Extrae características locales de las imágenes mediante LBP para entrenar clasificadores con SVM o Random Forest. Se dispone de versiones tanto en CPU como aceleradas en GPU.
+* Local Binary Pattern (LBP): Local Binary Pattern es una técnica de extracción de características basada en textura. Para cada píxel de la imagen en escala de grises, se comparan los valores de intensidad de los píxeles vecinos con el píxel central. Se genera un histograma que codifica patrones locales de textura normalizados. Se dispone de versiones tanto en CPU como aceleradas en GPU.
 
 * PCA: Implementa una reducción de dimensionalidad con Análisis de Componentes Principales (PCA) seguida de regresión logística para la clasificación.
 
-* Clasificadores Incrementales: Incluye scripts para entrenar modelos basados en Random Forest (con entrenamiento incremental vía warm_start) y SVM incremental (con SGDClassifier).
+* Random Forest Classifier: Random Forest es un método de ensamble que construye múltiples árboles de decisión independientes y combina sus predicciones por votación. Permite robustez ante ruido y evita sobreajuste. Se usa en los scripts `LBP_RFC_o_SVM.py` y `LBP_RFC_GPU.py`
+
+* K-Nearest Neighbors (KNN): clasifica una muestra nueva asignándole la etiqueta predominante entre sus k vecinos más cercanos en el espacio de características. En `LBP_KNN.py` se usa k=5 para predecir la clase basándose en histograma LBP.
+
+* K-Means Classifier: es un algoritmo de clustering no supervisado que particiona los datos en k grupos según cercanía a centroides. En `LBP_KMeans.py`, tras extraer histogramas LBP, se agrupan en k clústeres y cada clúster se etiqueta con la clase mayoritaria de sus muestras. 
+
+* Red Neuronal Feedforward (NN): En `LBP_NN_PyTorch.py` y `LBP_NN_Tensorflow.py` se define una red de perceptrones con dos capas ocultas (128 y 64 neuronas) y función de activación ReLU. La salida usa softmax para clasificación múltiple y se entrena con entropía cruzada.
 
 Además, se proporcionan scripts para realizar predicciones sobre nuevas imágenes y evaluar el desempeño de los modelos mediante la generación de informes y tablas resumidas.
 
 ---
 
-## Organización del Proyecto
-
-El repositorio incluye los siguientes archivos principales:
-
-* CNN.py: Entrena una CNN basada en ResNet50 utilizando validación cruzada, checkpoints periódicos y reanudación de entrenamiento.
-
-* LBP.py: Implementa la extracción de características basadas en LBP y entrena clasificadores (SVM / Random Forest) con validación cruzada.
-
-* LBP_GPU.py: Versión acelerada en GPU para la extracción y clasificación basada en LBP, utilizando bibliotecas como cupy y cuML.
-
-* PCA.py: Aplica PCA para reducir la dimensionalidad de las imágenes y entrena un clasificador basado en regresión logística.
-
-* RandomTree.py: Entrena un modelo Random Forest de forma incremental usando la técnica de warm_start y validación cruzada.
-
-* SMV.py: Utiliza un clasificador SVM incremental (SGDClassifier) basado en características extraídas por un modelo preentrenado.
-
-* Prediccion.py: Script para cargar un modelo CNN entrenado y realizar predicciones sobre nuevas imágenes.
-
-* prediccionLBP.py: Permite predecir la clase de una imagen utilizando un modelo entrenado con características LBP, mostrando las clasificaciones más probables junto con su nivel de confianza.
-
-* resultados.py: Evalúa el desempeño de la CNN mediante el muestreo de imágenes de cada categoría y genera un informe estadístico.
-
-* resultadosLBP.py: Similar a resultados.py pero para los modelos basados en LBP, generando un resumen de resultados en formato de tabla y exportándolo a CSV.
+## Checkpoints
+- Buscan archivos `checkpoint_fold{n}_latest.*` desde el último fold al primero.
+- Guardan el estado del modelo (y optimizador en NN) periódicamente o al finalizar cada fold.
+- Permiten interrumpir y reanudar el entrenamiento sin perder progreso.
 
 ---
 
 ## Requisitos
-Python 3.12
+`Python 3.12`
 
 ---
 
 ## Dependencias
-* PyTorch
+* `PyTorch`
 
-* TorchVision
+* `TorchVision`
+* `torch`
 
-* NumPy
+* `NumPy`
 
-* scikit-learn
+* `scikit-learn`
 
-* joblib
+* `scikit-image`
 
-* Pandas
+* `joblib`
 
-* Pillow (PIL)
+* `Pandas`
 
-* scikit-image
+* `Pillow (PIL)`
 
-* cupy (para LBP_GPU.py)
+* `cupy` 
 
-* cuML (para LBP_GPU.py)
+* `cuML` 
 
 ---
 
 ## Instalación
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -129,93 +119,27 @@ Asegúrate de configurar la variable ROOT_DIR en cada script para apuntar a la u
 
 ---
 
-## Instrucciones de Uso
-### Entrenamiento
-Cada módulo tiene su propio script de entrenamiento:
-
-* CNN.py:
-Para entrenar la red neuronal CNN con ResNet50, usa:
-
-```bash
-python CNN.py
-```
-
-* LBP.py / LBP_GPU.py:
-Para entrenar un modelo usando características LBP (en CPU o acelerado en GPU):
-
-```bash
-python LBP.py
-```
-o
-```bash
-python LBP_GPU.py
-```
-
-* PCA.py:
-Para ejecutar la reducción de dimensionalidad y entrenamiento con PCA:
-
-```bash
-python PCA.py
-```
-
-RandomTree.py:
-Para entrenar un clasificador Random Forest con entrenamiento incremental:
-
-```bash
-python RandomTree.py
-```
-
-* SMV.py:
-Para entrenar un clasificador SVM incremental:
-
-```bash
-python SMV.py
-```
-
-Checkpointing:
-La mayoría de los scripts implementan checkpoints para guardar el progreso y permitir la reanudación en caso de interrupciones.
-
----
-
 ## Predicción
 
-* Prediccion.py:
-Para realizar predicciones utilizando el modelo CNN entrenado, ejecuta:
+La prediccion es para una unica imagen, Para probar de uno en uno 
 
-```bash
-python Prediccion.py
-```
+## Evaluación de Resultados
 
-* prediccionLBP.py:
-Para predecir usando el modelo basado en LBP y obtener las clasificaciones más probables:
-
-```bash
-python prediccionLBP.py
-```
-
-### Evaluación de Resultados
-* resultados.py:
-Evalúa el desempeño del modelo CNN sobre una muestra de imágenes para cada categoría y muestra estadísticas de precisión y confianza.
-
-```bash
-python resultados.py
-```
-
-* resultadosLBP.py:
-Similar al anterior, pero para modelos basados en LBP. Genera un informe y exporta los resultados a un archivo CSV.
-
-```bash
-python resultadosLBP.py
-```
+Los resultados en un `.csv` que nos da una tabla que compara cada label y su acuracy y confianza basado en el 20% de imagenes existentes
 
 ---
 
 ## Consideraciones
 * Parámetros de Transformación:
 Asegúrate de que parámetros como el tamaño de imagen (IMAGE_SIZE) y las transformaciones (normalización, conversión a escala de grises o RGB) sean consistentes entre entrenamiento y predicción.
+Ajustar parámetros (`NUM_FOLDS`, `BATCH_SIZE`, `IMAGE_SIZE`, `tasa de aprendizaje`) según hardware.
 
 * Uso de GPU:
 Si cuentas con una GPU, utiliza LBP_GPU.py para aprovechar la aceleración mediante cupy y cuML.
 
-Reanudación del Entrenamiento:
+* Reanudación del Entrenamiento:
 Muchos scripts verifican la existencia de archivos checkpoint para reanudar el entrenamiento sin reiniciar desde cero.
+El archivo JSON (`dataset.json`) acelera cargas posteriores en LBP_KNN, LBP_KMeans y NN.
+
+* Espacio:
+Asegurarse de tener espacio en disco para checkpoints y modelos.
