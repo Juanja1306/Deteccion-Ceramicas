@@ -2,8 +2,8 @@ import pandas as pd
 
 # =============================== Cargar CSV y Calcular Promedio ===============================
 # Cambia la ruta a la ubicación de tu archivo CSV
-PATH = r'C:\Users\juanj\Desktop\Deteccion-Ceramicas\Resultados\resultados_prediccion_CNN.csv'
-OUTPUT_PATH = 'resultados_prediccion_CNN_promedio.csv'
+PATH = r'C:\Users\juanj\Desktop\Deteccion-Ceramicas\Resultados\resultados_prediccion_lbp_nn_TensorFlow.csv'
+OUTPUT_PATH = 'resultados_prediccion_lbp_nn_TensorFlow.csv'
 
 # Cargar el CSV. Cambia 'tu_archivo_filtrado.csv' por el nombre real de tu archivo.
 df = pd.read_csv(PATH)
