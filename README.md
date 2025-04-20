@@ -10,10 +10,11 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 | LBP + Random Forest Classifier (RFC) |  95.95%  | 83.83% |
 | LBP + KNN    | 91.63%  | 87.09%  |
 | Convolutional Neural Network (CNN) |  59.32%  | 91.5%  |
+| LBP + NN con Tensorflow    |  49.19%  | 55.32%  |
+| LBP + NN con Pytorch    |  46.82%  | 51.24%  |
 | LBP + KMeans    |  14.12%  | 99.97%  |
 | LBP + Suport Vector Machine (SVM)    |  2.3%  | 10.86%  |
-| LBP + NN con Pytorch    |  -%  | -%  |
-| LBP + NN con Tensorflow    |  -%  | -%  |
+
 
 </div>
 
