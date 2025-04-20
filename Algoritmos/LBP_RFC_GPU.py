@@ -19,7 +19,7 @@ ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"  # Ruta a la carpeta
 NUM_CLASSES = len(os.listdir(ROOT_DIR))  # Número de clases (subcarpetas)
 NUM_FOLDS = 5  # Número de folds para validación cruzada
 IMAGE_SIZE = (512, 512)  # Tamaño deseado para las imágenes
-MODEL_SAVE_PATH = "mejor_modelo_lbp.pkl"  # Ruta para guardar el mejor modelo
+MODEL_SAVE_PATH = "mejor_modelo_lbp_RFC_GPU.pkl"  # Ruta para guardar el mejor modelo
 RANDOM_STATE = 42
 
 # Parámetros para LBP
