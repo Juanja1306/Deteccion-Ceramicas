@@ -15,7 +15,7 @@ Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 # Directorio con las imágenes organizadas en subcarpetas (cada una es una etiqueta)
 ROOT_DIR = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"
 # Ruta del modelo entrenado (PyTorch)
-MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_NN_PyTorch.pt"
+MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_Pytorch.pt"
 # Tamaño de la imagen (debe coincidir con el usado en entrenamiento)
 IMAGE_SIZE = (512, 512)
 # Porcentaje de imágenes a evaluar por subcarpeta
@@ -160,7 +160,7 @@ print(f"  Subcarpeta: {worst_label}")
 print(df.loc[worst_label].to_string())
 
 # Exportar el DataFrame a un archivo CSV
-csv_output_path = "resultados_prediccion_lbp_nn.csv"
+csv_output_path = "resultados_prediccion_lbp_nn_Pytorch.csv"
 df.to_csv(csv_output_path)
 print(f"\nTabla de resultados guardada en: {csv_output_path}")
 print("Fin del script.")
