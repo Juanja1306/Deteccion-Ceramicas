@@ -134,7 +134,7 @@ print(f"  Subcarpeta: {worst_label}")
 print(df.loc[worst_label].to_string())
 
 # Exportar el DataFrame a un archivo CSV
-csv_output_path = "resultados_prediccion_lbp_nn.csv"
+csv_output_path = "resultados_prediccion_lbp_nn_TensorFlow.csv"
 df.to_csv(csv_output_path)
 print(f"\nTabla de resultados guardada en: {csv_output_path}")
 print("Fin del script.")
