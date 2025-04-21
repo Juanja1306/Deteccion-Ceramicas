@@ -8,9 +8,9 @@ from skimage.feature import local_binary_pattern  # type: ignore
 # Carpeta raíz con subcarpetas de clases
 DATA_ROOT   = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"
 # Modelo KNN entrenado
-MODEL_PATH  = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_KNN.pkl"
+MODEL_PATH  = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_KNN_FINAL.pkl"
 # Imagen a predecir
-IMAGE_PATH  = r"C:\Users\juanj\Pictures\florencia.jpg"
+IMAGE_PATH  = r"C:\Users\juanj\Pictures\florencia2.jpg"
 
 # ========================= PARÁMETROS LBP =========================
 IMAGE_SIZE = (512, 512)

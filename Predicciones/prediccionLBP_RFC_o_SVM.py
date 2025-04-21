@@ -14,8 +14,8 @@ IMAGE_SIZE = (512, 512)  # Tamaño deseado para las imágenes
 # Ruta a la carpeta raíz con subcarpetas (cada una es una etiqueta)
 # Ruta del modelo guardado
 ROOT_DIR = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"
-MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_SVM.pkl"
-IMAGE_PATH = r"C:\Users\juanj\Pictures\florencia.jpg"
+MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_RFC_FINAL.pkl"
+IMAGE_PATH = r"C:\Users\juanj\Pictures\florencia2.jpg"
 
 # =============================== Función para extraer LBP ===============================
 def compute_lbp(image_path):
@@ -40,8 +40,13 @@ def compute_lbp(image_path):
 
 # =============================== Cargar el Modelo ===============================
 if os.path.exists(MODEL_PATH):
+    size = os.path.getsize(MODEL_PATH)
+    print(f"Tamaño del archivo de modelo: {size} bytes")
+    if size == 0:
+        raise IOError("El archivo de modelo está vacío")
+    # ← Aquí cargas realmente el modelo en `clf`
     clf = joblib.load(MODEL_PATH)
-    print("Modelo cargado exitosamente desde:", MODEL_PATH)
+    print("Modelo cargado exitosamente.")
 else:
     print("No se encontró el modelo en la ruta especificada.")
     exit()
