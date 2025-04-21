@@ -46,7 +46,6 @@ def load_dataset(root_dir, json_file="dataset.json"):
     Primero verifica si existe un archivo JSON con los datos preprocesados. 
     Si existe, carga y retorna dichos datos; en caso contrario, procesa las imágenes y guarda los resultados.
     """
-    def load_dataset(root_dir, json_file="dataset.json"):
     if os.path.exists(json_file):
         try:
             with open(json_file, "r") as f:
