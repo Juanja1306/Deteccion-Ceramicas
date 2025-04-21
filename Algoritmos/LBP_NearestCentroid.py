@@ -14,7 +14,7 @@ warnings.filterwarnings("ignore", category=Image.DecompressionBombWarning)
 Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
 # Configuración inicial
-ROOT_DIR        = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"
+ROOT_DIR        = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"
 NUM_CLASSES     = len(os.listdir(ROOT_DIR))
 NUM_FOLDS       = 5
 IMAGE_SIZE      = (512, 512)
@@ -39,7 +39,7 @@ def compute_lbp(image_path):
     hist = hist.astype(float)
     return hist / (hist.sum() + 1e-6)
 
-def load_dataset(root_dir, json_file="dataset.json"):
+def load_dataset(root_dir, json_file=r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\dataset.json"):
     """Carga o genera el dataset de LBP desde imágenes y lo cachea en JSON."""
     if os.path.exists(json_file):
         try:
