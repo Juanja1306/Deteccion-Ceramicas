@@ -15,6 +15,7 @@ IMAGE_SIZE = (512, 512)  # Tamaño deseado para las imágenes
 # Ruta del modelo guardado
 ROOT_DIR = r"C:\Users\juanj\Desktop\DATA FINAL\Ruido"
 MODEL_PATH = r"C:\Users\juanj\Desktop\Deteccion-Ceramicas\Paths\mejor_modelo_lbp_SVM.pkl"
+IMAGE_PATH = r"C:\Users\juanj\Pictures\florencia.jpg"
 
 # =============================== Función para extraer LBP ===============================
 def compute_lbp(image_path):
@@ -69,6 +70,8 @@ else:
 #            'URBAN_JUNGLE', 'UTAH', 'UYUNI', 'VENECIA', 'VENETTO', 'VESTRUM', 'WOODLAND', 'ZINERVA']
 
 classes = sorted(os.listdir(ROOT_DIR))
+# print("Clases encontradas:", classes, "\n")
+# print(f"Total de clases: {len(classes)}\n")
 NUM_CLASSES = len(classes)
 # print(f"Clases encontradas: {classes}")
 
@@ -98,11 +101,10 @@ def predict_image_top5(image_path):
 
 # =============================== Ejecución: Predecir para una Imagen ===============================
 if __name__ == "__main__":
-    image_path = input("Ingrese la ruta de la imagen a predecir: ").strip()
-    if not os.path.exists(image_path):
+    if not os.path.exists(IMAGE_PATH):
         print("La ruta especificada no existe.")
     else:
-        results = predict_image_top5(image_path)
+        results = predict_image_top5(IMAGE_PATH)
         if results is not None:
             print("\nTop-5 Predicciones:")
             # Imprime la predicción principal y luego las 4 siguientes
