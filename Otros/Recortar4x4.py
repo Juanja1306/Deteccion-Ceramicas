@@ -2,7 +2,7 @@ from PIL import Image, ImageDraw
 
 Image.MAX_IMAGE_PIXELS = None  # Desactiva la limitación de tamaño de imagen
 # 1. Carga la imagen
-img = Image.open(r"C:\Users\juanj\Desktop\DATA FINAL\Final\NEO\NEO_BLUE.jpg")
+img = Image.open(r"C:\Users\xxx\NEO_BLUE.jpg")
 w, h = img.size
 
 # 2. Dibuja la cuadrícula
