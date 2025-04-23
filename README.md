@@ -1,6 +1,6 @@
 # Detección Cerámicas
 
-Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de diferentes tipos de cerámicas mediante técnicas de procesamiento de imágenes y aprendizaje automático. Se han implementado diversas metodologías que incluyen redes neuronales convolucionales, extracción de características basadas en LBP, reducción de dimensionalidad con PCA y clasificadores tradicionales (como SVM y Random Forest).
+Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de diferentes tipos de cerámicas basandonos unicamente en su diseño mediante técnicas de procesamiento de imágenes y aprendizaje automático. Se han implementado diversas metodologías que incluyen redes neuronales simples (NN), redes neuronales convolucionales (CNN), clasificadores tradicionales (SVM y Random Forest) y extracción de características basadas en LBP.
 
 ## Resultados
 <div align="center">
@@ -36,7 +36,7 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 
 ## Algoritmos y Modelos
 
-Este proyecto tiene como objetivo detectar y clasificar imágenes de cerámicas mediante varias técnicas de análisis visual. Para ello se han desarrollado múltiples módulos:
+Este proyecto tiene como objetivo detectar y clasificar imágenes de cerámicas basandonos unicamente en su diseño mediante varias técnicas de análisis visual. Para ello se han desarrollado múltiples módulos:
 
 * Convolutional Neural Network (CNN): En `CNN.py` se emplea una CNN basada en ResNet50 preentrenada. Las capas convolucionales extraen características de alto nivel de las imágenes, y la última capa totalmente conectada se ajusta al número de clases. Esta arquitectura aprovecha transferencia de aprendizaje.
 
@@ -61,6 +61,7 @@ Además, se proporcionan scripts para realizar predicciones sobre nuevas imágen
 - Buscan archivos `checkpoint_fold{n}_latest.*` desde el último fold al primero.
 - Guardan el estado del modelo (y optimizador en NN) periódicamente o al finalizar cada fold.
 - Permiten interrumpir y reanudar el entrenamiento sin perder progreso.
+- En algunos archivos, se eliminan automáticamente los folds cuya precisión (accuracy) sea inferior a la de los de mejor desempeño.
 
 ---
 
@@ -121,7 +122,7 @@ DATA/
     │   └── ...
     └── ...
 ```
-Asegúrate de configurar la variable ROOT_DIR en cada script para apuntar a la ubicación correcta de tus datos.
+Asegurarse de configurar la variable ROOT_DIR en cada script para apuntar a la ubicación correcta.
 
 ---
 
@@ -131,22 +132,22 @@ La prediccion es para una unica imagen, Para probar de uno en uno
 
 ## Evaluación de Resultados
 
-Los resultados en un `.csv` que nos da una tabla que compara cada label y su acuracy y confianza basado en el 20% de imagenes existentes
+Los resultados en un `.csv` que nos da una tabla que compara cada label sobre su acuracy y confianza basado en el 20% de imagenes existentes
 
 ---
 
 ## Consideraciones
 
-* Parámetros de Transformación:
-Asegúrate de que parámetros como el tamaño de imagen (IMAGE_SIZE) y las transformaciones (normalización, conversión a escala de grises o RGB) sean consistentes entre entrenamiento y predicción.
+* **Parámetros de Transformación:** 
+Asegurarse de que parámetros como el tamaño de imagen (IMAGE_SIZE) y las transformaciones (normalización, conversión a escala de grises o RGB) sean consistentes entre entrenamiento y predicción.
 Ajustar parámetros (`NUM_FOLDS`, `BATCH_SIZE`, `IMAGE_SIZE`, `tasa de aprendizaje`) según hardware.
 
-* Uso de GPU:
-Si cuentas con una GPU, utiliza LBP_GPU.py para aprovechar la aceleración mediante cupy y cuML.
+* **Uso de GPU:**
+Si se cuenta con una GPU, utiliza LBP_GPU.py para aprovechar la aceleración mediante cupy y cuML.
 
-* Reanudación del Entrenamiento:
+* **Reanudación del Entrenamiento:**
 Muchos scripts verifican la existencia de archivos checkpoint para reanudar el entrenamiento sin reiniciar desde cero.
-El archivo JSON (`dataset.json`) acelera cargas posteriores en LBP_KNN, LBP_KMeans y NN.
+El archivo JSON (`dataset.json`) acelera cargas en los archivos que usan LBP. Aquí se encuientra el histograma del LBP de las imágenes.
 
-* Espacio:
+* **Espacio:**
 Asegurarse de tener espacio en disco para checkpoints y modelos.
