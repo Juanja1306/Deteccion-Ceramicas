@@ -139,7 +139,7 @@ if __name__ == "__main__":
 
     # 4) Predicción local + selección de clase para PDP
     top5, hist = predict_image_top5(clf, classes, IMAGE_PATH)
-    print("\n🎯 Top‑5 Predicciones:")
+    print("\n🎯 Top-5 Predicciones:")
     for lbl, p in top5:
         print(f"  {lbl}: {p*100:.2f}%")
 
