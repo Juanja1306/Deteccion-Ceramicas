@@ -25,11 +25,11 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 - [Algoritmos y Modelos](#algoritmos-y-modelos)
 - [Checkpoints](#checkpoints)
 - [Estructura de Datos](#estructura-de-datos)
+- [Predicción](#predicción)
+- [Evaluación de Resultados](#evaluación-de-resultados)
 - [Requisitos](#requisitos)
 - [Dependencias](#dependencias)
 - [Instalación](#instalación)
-- [Predicción](#predicción)
-- [Evaluación de Resultados](#evaluación-de-resultados)
 - [Consideraciones](#consideraciones)
 
 ---
@@ -83,6 +83,16 @@ Asegurarse de configurar la variable ROOT_DIR en cada script para apuntar a la u
 
 ---
 
+## Predicción
+
+La prediccion es para una unica imagen, Para probar de uno en uno 
+
+## Evaluación de Resultados
+
+Los resultados en un `.csv` que nos da una tabla que compara cada label sobre su acuracy y confianza basado en el 20% de imagenes existentes
+
+---
+
 ## Requisitos
 
 `Python 3.12`
@@ -124,15 +134,6 @@ pip install -r requirements.txt
 
 ---
 
-## Predicción
-
-La prediccion es para una unica imagen, Para probar de uno en uno 
-
-## Evaluación de Resultados
-
-Los resultados en un `.csv` que nos da una tabla que compara cada label sobre su acuracy y confianza basado en el 20% de imagenes existentes
-
----
 
 ## Consideraciones
 
