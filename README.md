@@ -42,8 +42,6 @@ Este proyecto tiene como objetivo detectar y clasificar imágenes de cerámicas 
 
 * Local Binary Pattern (LBP): Local Binary Pattern es una técnica de extracción de características basada en textura. Para cada píxel de la imagen en escala de grises, se comparan los valores de intensidad de los píxeles vecinos con el píxel central. Se genera un histograma que codifica patrones locales de textura normalizados. Se dispone de versiones tanto en CPU como aceleradas en GPU.
 
-* PCA: Implementa una reducción de dimensionalidad con Análisis de Componentes Principales (PCA) seguida de regresión logística para la clasificación.
-
 * Random Forest Classifier: Random Forest es un método de ensamble que construye múltiples árboles de decisión independientes y combina sus predicciones por votación. Permite robustez ante ruido y evita sobreajuste. Se usa en los scripts `LBP_RFC_o_SVM.py` y `LBP_RFC_GPU.py`
 
 * K-Nearest Neighbors (KNN): clasifica una muestra nueva asignándole la etiqueta predominante entre sus k vecinos más cercanos en el espacio de características. En `LBP_KNN.py` se usa k=5 para predecir la clase basándose en histograma LBP.
