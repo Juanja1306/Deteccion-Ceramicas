@@ -24,10 +24,10 @@ Deteccion Ceramicas es un proyecto orientado a la clasificación y detección de
 
 - [Algoritmos y Modelos](#algoritmos-y-modelos)
 - [Checkpoints](#checkpoints)
+- [Estructura de Datos](#estructura-de-datos)
 - [Requisitos](#requisitos)
 - [Dependencias](#dependencias)
 - [Instalación](#instalación)
-- [Estructura de Datos](#estructura-de-datos)
 - [Predicción](#predicción)
 - [Evaluación de Resultados](#evaluación-de-resultados)
 - [Consideraciones](#consideraciones)
@@ -60,6 +60,26 @@ Además, se proporcionan scripts para realizar predicciones sobre nuevas imágen
 - Guardan el estado del modelo (y optimizador en NN) periódicamente o al finalizar cada fold.
 - Permiten interrumpir y reanudar el entrenamiento sin perder progreso.
 - En algunos archivos, se eliminan automáticamente los folds cuya precisión (accuracy) sea inferior a la de los de mejor desempeño.
+
+---
+
+## Estructura de Datos
+
+El proyecto asume que las imágenes se organizan en carpetas donde cada subcarpeta representa una clase (label) de cerámicas. Por ejemplo:
+```
+DATA/
+└── Ruido/
+    ├── Clase1/
+    │   ├── imagen1.jpg
+    │   ├── imagen2.jpg
+    │   └── ...
+    ├── Clase2/
+    │   ├── imagen1.jpg
+    │   ├── imagen2.jpg
+    │   └── ...
+    └── ...
+```
+Asegurarse de configurar la variable ROOT_DIR en cada script para apuntar a la ubicación correcta.
 
 ---
 
@@ -101,26 +121,6 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
-
----
-
-## Estructura de Datos
-
-El proyecto asume que las imágenes se organizan en carpetas donde cada subcarpeta representa una clase (label) de cerámicas. Por ejemplo:
-```
-DATA/
-└── Ruido/
-    ├── Clase1/
-    │   ├── imagen1.jpg
-    │   ├── imagen2.jpg
-    │   └── ...
-    ├── Clase2/
-    │   ├── imagen1.jpg
-    │   ├── imagen2.jpg
-    │   └── ...
-    └── ...
-```
-Asegurarse de configurar la variable ROOT_DIR en cada script para apuntar a la ubicación correcta.
 
 ---
 
