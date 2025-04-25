@@ -4,3 +4,4 @@ Ruido
 *.pth
 Paths
 requirements2.txt
+__pycache__
