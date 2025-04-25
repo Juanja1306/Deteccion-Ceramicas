@@ -13,6 +13,11 @@ warnings.filterwarnings("ignore", category=Image.DecompressionBombWarning)
 
 Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 
+ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
+NUM_FOLDS = 5  # Número de folds para validación cruzada
+MODEL_SAVE_PATH = "mejor_modelo_lbp.pkl"  # Ruta para guardar el mejor modelo
+RANDOM_STATE = 42
+
 # Cargar datos
 print("Cargando dataset...")
 X, y = lbp.load_dataset(ROOT_DIR)
