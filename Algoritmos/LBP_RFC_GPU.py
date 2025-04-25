@@ -39,7 +39,7 @@ def compute_lbp(image_path):
     return hist
 
 # Función para cargar el dataset completo
-def load_dataset(root_dir, json_file="dataset.json"):
+def load_dataset(root_dir, json_file="datasetLBP.json"):
     """
     Recorre las subcarpetas (etiquetas) y extrae el histograma LBP de cada imagen.
     Primero verifica si existe un archivo JSON con los datos preprocesados. 
