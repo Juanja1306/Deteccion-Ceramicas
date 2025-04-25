@@ -18,7 +18,7 @@ Image.MAX_IMAGE_PIXELS = None  # Deshabilitar el límite
 ROOT_DIR = "/home/admingig/Deteccion-Ceramicas/DATA/Ruido/"  # Ruta a la carpeta raíz con subcarpetas de etiquetas
 NUM_CLASSES = len(os.listdir(ROOT_DIR))  # Número de clases (subcarpetas)
 NUM_FOLDS = 5  # Número de folds para validación cruzada
-IMAGE_SIZE = (512, 512)  # Tamaño deseado para las imágenes
+
 MODEL_SAVE_PATH = "mejor_modelo_lbp.pkl"  # Ruta para guardar el mejor modelo
 RANDOM_STATE = 42
 
@@ -26,6 +26,7 @@ RANDOM_STATE = 42
 RADIUS = 3             # Radio del LBP
 N_POINTS = 8 * RADIUS  # Número de puntos alrededor del pixel central
 METHOD = 'uniform'     # Método de cálculo del LBP
+IMAGE_SIZE = (512, 512)  # Tamaño deseado para las imágenes
 
 # Función para calcular LBP de una imagen
 def compute_lbp(image_path):
