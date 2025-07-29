@@ -51,7 +51,7 @@ def load_dataset(root_dir, json_file="datasetLBP.json"):
             with open(json_file, "r") as f:
                 data = json.load(f)
             return np.array(data["features"]), np.array(data["labels"])
-        except (JSONDecodeError, KeyError):
+        except (json.JSONDecodeError, KeyError):
             print("⚠️ JSON inválido, regenerando desde las imágenes…")
 
     # Si no existe el JSON, se procede a procesar los datos
